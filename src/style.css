@@ -1,3 +1,10 @@
+body {
+    font-family: "Oxygen", sans-serif;
+}
+h1 {text-align: center; margin-top: 10px;}
+h2 {text-align: center;}
+li {text-align: center;list-style: none;}
+.factors {margin-top: 10px; opacity: .7;}
 .box {
     background: linear-gradient(180deg, #e1f6f4 0%, #bfe9db 100%);
     padding: 50px;
@@ -5,3 +12,23 @@
     border-radius: 5px;
     max-width: 650px;
   }
+  .footer {text-align: center; margin-top: 50px; font-family: "monospace"; color: #6ac1b8;}
+  .currentEmoji {text-align: center; font-size: 35px; color: white;}
+  .searchCity {text-align: center;}
+  .searchButton {
+    border-radius: 15px;
+    border: none;
+    background-color: #6ac1b8;
+    padding: 5px 20px;
+    color: white;
+    transition: all 200ms ease-in-out;
+  }
+  .searchButton:hover {opacity: .5;}
+  .searchBar { border-radius: 15px;
+    border: 2px solid #6ac1b8;
+    padding: 3px 20px;}
+  #dayTime {
+    font-size: 22px; opacity: .7;
+    text-align: center; margin-top: 40px; margin-bottom: 20px;
+  }
+  #conditions {text-align: center; font-size: 22px; opacity: .7;}
