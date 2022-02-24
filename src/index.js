@@ -27,8 +27,11 @@ function displayCurrent(response) {
   let mainTemp = document.querySelector(".mainTemp");
   let city = response.data.list[0].name;
     let h1 = document.querySelector("h1");
+    let weatherConditions = response.data.list[0].weather[0].main;
+    let conditions = document.querySelector("#conditions");
     mainTemp.innerHTML = `${temperature}`;
   h1.innerHTML = `${city}`;
+  conditions.innerHTML = `${weatherConditions}`;
 }
 
 function replaceCity(event) {
