@@ -29,9 +29,15 @@ function displayCurrent(response) {
     let h1 = document.querySelector("h1");
     let weatherConditions = response.data.list[0].weather[0].main;
     let conditions = document.querySelector("#conditions");
+    let windSpeed= Math.round(response.data.list[0].wind.speed);
+    let wind= document.querySelector(".wind");
+    let humidity=Math.round(response.data.list[0].main.humidity);
+    let humid= document.querySelector(".humid");
     mainTemp.innerHTML = `${temperature}`;
   h1.innerHTML = `${city}`;
   conditions.innerHTML = `${weatherConditions}`;
+  wind.innerHTML= `${windSpeed}`;
+  humid.innerHTML=`${humidity}`;
 }
 
 function replaceCity(event) {
