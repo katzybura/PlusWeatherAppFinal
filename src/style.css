@@ -1,6 +1,7 @@
 body {
     font-family: "Oxygen", sans-serif;
 }
+a:link {color: #07588a;}
 h1 {text-align: center; margin-top: 10px;}
 h2 {text-align: center;}
 li {text-align: center;list-style: none;}
