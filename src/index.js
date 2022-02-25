@@ -33,11 +33,16 @@ function displayCurrent(response) {
     let wind= document.querySelector(".wind");
     let humidity=Math.round(response.data.list[0].main.humidity);
     let humid= document.querySelector(".humid");
+    let currentEmoji= document.querySelector(".currentEmoji");
+    let iconCode= response.data.list[0].weather[0].icon;
+
     mainTemp.innerHTML = `${temperature}`;
   h1.innerHTML = `${city}`;
   conditions.innerHTML = `${weatherConditions}`;
   wind.innerHTML= `${windSpeed}`;
   humid.innerHTML=`${humidity}`;
+currentEmoji.setAttribute("src", `http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+
 }
 
 function replaceCity(event) {

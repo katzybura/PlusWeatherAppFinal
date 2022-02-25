@@ -13,7 +13,7 @@ li {text-align: center;list-style: none;}
     max-width: 650px;
   }
   .footer {text-align: center; margin-top: 50px; font-family: "monospace"; color: #6ac1b8;}
-  .currentEmoji {text-align: center; font-size: 35px; color: white;}
+  .currentEmoji {display: block; margin: 0 auto; font-size: 35px; color: white;}
   .searchCity {text-align: center;}
   .searchButton {
     border-radius: 15px;
