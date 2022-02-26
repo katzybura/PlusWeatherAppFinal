@@ -21,6 +21,22 @@ let days = [
 let day = days[now.getDay()];
 dayTime.innerHTML = `${day} ${hour}:${minutes}`;
 
+function displayForecast(){
+  let forecast= document.querySelector("#forecast");
+  let days = ["Sat", "Sun", "Mon", "Tues", "Wed", "Thurs"];
+ let forecastHTML= `<div class="row">`; 
+ days.forEach(function(day){
+  forecastHTML= forecastHTML + `<div class="col-2">
+  <div class="forecast-day">${day}</div>
+  <img src="http://openweathermap.org/img/wn/10d@2x.png" width="60px" class="forecast-emoji">
+  <div class="forecast-temps">
+    <span class="max-temp">35°</span> 
+    <span class="min-temp">28°</span>
+  </div>
+</div>`;});
+forecastHTML= forecastHTML + `</div>`;
+forecast.innerHTML= forecastHTML;}
+
 function displayCurrent(response) {
   console.log(response);
   let temperature = Math.round(response.data.list[0].main.temp);
@@ -85,3 +101,5 @@ axios.get(`${apiUrl}&appid=${apiKey}`).then(switchToFahren);}
 
 let faren =document.querySelector(".faren");
 faren.addEventListener("click", fetchTempFar);
+
+displayForecast();
