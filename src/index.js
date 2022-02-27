@@ -54,7 +54,6 @@ function getForecast(coordinates){
 }
 
 function displayCurrent(response) {
-  console.log(response);
   let temperature = Math.round(response.data.list[0].main.temp);
   let mainTemp = document.querySelector(".mainTemp");
   let city = response.data.list[0].name;
@@ -78,13 +77,20 @@ currentEmoji.setAttribute("src", `http://openweathermap.org/img/wn/${iconCode}@2
 getForecast(response.data.list[0].coord);
 }
 
-function replaceCity(event) {
-  event.preventDefault();
-  let searchBar = document.querySelector(".searchBar");
+function search(city) {
   let apiKey = "d5051b82a85f7e540a240206a4a2fed4";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/find?q=${searchBar.value}&units=imperial`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/find?q=${city}&units=imperial`;
   axios.get(`${apiUrl}&appid=${apiKey}`).then(displayCurrent);
 }
 
+function submitProgress(event) {
+  event.preventDefault();
+  let searchBar = document.querySelector(".searchBar");
+  search(searchBar.value);
+}
+
 let searchForm = document.querySelector("#searchForm");
-searchForm.addEventListener("submit", replaceCity);
+searchForm.addEventListener("submit", submitProgress);
+
+search("New York");
+
