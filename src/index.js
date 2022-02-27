@@ -21,7 +21,8 @@ let days = [
 let day = days[now.getDay()];
 dayTime.innerHTML = `${day} ${hour}:${minutes}`;
 
-function displayForecast(){
+function displayForecast(response){
+  console.log(response.data.daily);
   let forecast= document.querySelector("#forecast");
   let days = ["Sat", "Sun", "Mon", "Tues", "Wed", "Thurs"];
  let forecastHTML= `<div class="row">`; 
@@ -36,6 +37,13 @@ function displayForecast(){
 </div>`;});
 forecastHTML= forecastHTML + `</div>`;
 forecast.innerHTML= forecastHTML;}
+
+function getForecast(coordinates){
+  let apiKey= "d5051b82a85f7e540a240206a4a2fed4";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function displayCurrent(response) {
   console.log(response);
@@ -59,6 +67,7 @@ function displayCurrent(response) {
   humid.innerHTML=`${humidity}`;
 currentEmoji.setAttribute("src", `http://openweathermap.org/img/wn/${iconCode}@2x.png`);
 
+getForecast(response.data.list[0].coord);
 }
 
 function replaceCity(event) {
@@ -71,35 +80,3 @@ function replaceCity(event) {
 
 let searchForm = document.querySelector("#searchForm");
 searchForm.addEventListener("submit", replaceCity);
-
-function switchToCelcius(response){
-  console.log(response);
-  let mainTemp=document.querySelector(".mainTemp");
-  let celciusTemperature=Math.round(response.data.list[0].main.temp);
-  mainTemp.innerHTML=`${celciusTemperature}`;
-}
-function fetchTemp(event){event.preventDefault(); 
-  let searchBar = document.querySelector(".searchBar");
-let apiKey = "d5051b82a85f7e540a240206a4a2fed4";
-let apiUrl = `https://api.openweathermap.org/data/2.5/find?q=${searchBar.value}&units=metric`;
-axios.get(`${apiUrl}&appid=${apiKey}`).then(switchToCelcius);}
-
-let cel=document.querySelector(".cel");
-cel.addEventListener("click", fetchTemp);
-
-function switchToFahren(response){
-  console.log(response);
-  let mainTemp=document.querySelector(".mainTemp");
-  let farTemperature=Math.round(response.data.list[0].main.temp);
-  mainTemp.innerHTML=`${farTemperature}`;
-}
-function fetchTempFar(event){event.preventDefault(); 
-  let searchBar = document.querySelector(".searchBar");
-let apiKey = "d5051b82a85f7e540a240206a4a2fed4";
-let apiUrl = `https://api.openweathermap.org/data/2.5/find?q=${searchBar.value}&units=imperial`;
-axios.get(`${apiUrl}&appid=${apiKey}`).then(switchToFahren);}
-
-let faren =document.querySelector(".faren");
-faren.addEventListener("click", fetchTempFar);
-
-displayForecast();
